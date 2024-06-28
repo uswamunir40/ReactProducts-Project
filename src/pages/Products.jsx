@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../axios/axios";
 import ProductCard from "../components/ProductCard";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -29,7 +30,9 @@ const Products = () => {
   console.log("PRoducts : ", products);
   return (
     <div>
-      <h1 className="my-5 flex justify-center text-xl font-bold">Products</h1>
+      <h1 className="my-5 flex justify-center text-4xl font-semibold">
+        Products
+      </h1>
 
       <form className="my-5 flex justify-center">
         <div className="relative w-1/2">
@@ -72,12 +75,14 @@ const Products = () => {
 
       <div className="mx-10 grid grid-cols-3 gap-x-8 gap-y-4">
         {searchedProducts.map((product, index) => (
-          <ProductCard
-            image={product.image}
-            title={product.title}
-            price={product.price}
-            description={product.description}
-          />
+          <Link to={`/products/${product.id}`} key={product.id}>
+            <ProductCard
+              image={product.image}
+              title={product.title}
+              price={product.price}
+              description={product.description}
+            />
+          </Link>
         ))}
       </div>
     </div>
